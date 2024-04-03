@@ -1,3 +1,9 @@
+ interface InnerEmployee_Wage_Oops {
+    public void addCompany(String company,int EMP_RATE_PER_HOUR,int EMP_WORK_DAYS,int EMP_WORK_HOUR);
+    public void computeEmpWage();
+    public int calculateEmployeeWage(CompanyEmpWage companyEmpWage);
+} 
+ 
  class CompanyEmpWage{
     
     String company;
@@ -25,7 +31,7 @@
 
 }
 
-public class Employee_Wage_Oops {
+public class Employee_Wage_Oops implements InnerEmployee_Wage_Oops{
     int FULL_TIME_EMP = 1;
     int PART_TIME_EMP = 2;  
     int EMP_FULLTIME_WORK_HOUR = 8;
