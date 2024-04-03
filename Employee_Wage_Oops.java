@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+
 interface InnerEmployee_Wage_Oops {
     public void addCompany(String company,int EMP_RATE_PER_HOUR,int EMP_WORK_DAYS,int EMP_WORK_HOUR);
     public void computeEmpWage();
@@ -13,6 +14,8 @@ interface InnerEmployee_Wage_Oops {
     int EMP_WORK_DAYS;
     int EMP_WORK_HOUR;
     int total_wage;
+    int daily_wage;
+    
 
     public CompanyEmpWage(String company,int EMP_RATE_PER_HOUR,int EMP_WORK_DAYS,int EMP_WORK_HOUR){
 
@@ -20,16 +23,24 @@ interface InnerEmployee_Wage_Oops {
         this.EMP_RATE_PER_HOUR = EMP_RATE_PER_HOUR;
         this.EMP_WORK_DAYS = EMP_WORK_DAYS;
         this.EMP_WORK_HOUR = EMP_WORK_HOUR;
+        
     }
 
     public void setTotalWage(int total_wage){
          this.total_wage = total_wage;
     }
 
+    public void setDailyWage(int EMP_WORK_DAYS,int daily_wage){
+        this.daily_wage = daily_wage;
+        
+
+    }
+
     @Override
     public String toString(){
         return "Total Employee Wage for comapny " +company + " is : " + total_wage;
     }
+
 
 }
 
@@ -90,8 +101,12 @@ public class Employee_Wage_Oops implements InnerEmployee_Wage_Oops{
                 total_emp_work_hour += 0;
             }
             companyEmpWage.total_wage += emp_wage;
+            companyEmpWage.daily_wage = emp_wage;
+            System.out.println("Daily Employee Wage is : " + companyEmpWage.daily_wage);
+            
         }
          return companyEmpWage.total_wage;
+         
     }
 
     
@@ -99,9 +114,9 @@ public class Employee_Wage_Oops implements InnerEmployee_Wage_Oops{
     public static void main(String[] args) {
 
         Employee_Wage_Oops empwage = new Employee_Wage_Oops();
-        empwage.addCompany("Samsung", 20, 25, 200);
-        empwage.addCompany("QualityKiosk", 25, 24, 300);
-        empwage.addCompany("Bridgelabz", 30, 25, 250);
+        empwage.addCompany("Samsung", 200, 25, 250);
+        empwage.addCompany("QualityKiosk", 250, 24, 300);
+        empwage.addCompany("Bridgelabz", 300, 25, 270);
         empwage.computeEmpWage();
         // empwage.calculateEmployeeWage(null);
         
