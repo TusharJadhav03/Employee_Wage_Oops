@@ -1,10 +1,12 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 interface InnerEmployee_Wage_Oops {
     public void addCompany(String company,int EMP_RATE_PER_HOUR,int EMP_WORK_DAYS,int EMP_WORK_HOUR);
     public void computeEmpWage();
     public int calculateEmployeeWage(CompanyEmpWage companyEmpWage);
+    public int getEmpWageCompany(String company);
 } 
  
  class CompanyEmpWage{
@@ -53,10 +55,12 @@ public class Employee_Wage_Oops implements InnerEmployee_Wage_Oops{
     
     int noOfCompany = 0;
     ArrayList<CompanyEmpWage> companyEmpWageList;
+    HashMap<String,CompanyEmpWage> companyList;
     // CompanyEmpWage[] companyEmpWageArray ;
 
     public Employee_Wage_Oops(){
         companyEmpWageList = new ArrayList<>();
+        companyList = new HashMap<>();
         // companyEmpWageArray = new CompanyEmpWage[5];
     }
 
@@ -65,6 +69,7 @@ public class Employee_Wage_Oops implements InnerEmployee_Wage_Oops{
         // companyEmpWageArray[noOfCompany] = new CompanyEmpWage(company, EMP_RATE_PER_HOUR, EMP_WORK_DAYS, EMP_WORK_HOUR);
         CompanyEmpWage companyEmpWage = new CompanyEmpWage(company, EMP_RATE_PER_HOUR, EMP_WORK_DAYS, EMP_WORK_HOUR);
         companyEmpWageList.add(companyEmpWage);
+        companyList.put(company, companyEmpWage);
         noOfCompany++;
     }
 
@@ -74,6 +79,11 @@ public class Employee_Wage_Oops implements InnerEmployee_Wage_Oops{
             companyEmpWage.setTotalWage(this.calculateEmployeeWage(companyEmpWage));
             System.out.println(companyEmpWage);
         }
+    }
+
+    @Override
+    public int getEmpWageCompany(String company){
+        return companyList.get(company).total_wage;
     }
 
 
@@ -118,6 +128,7 @@ public class Employee_Wage_Oops implements InnerEmployee_Wage_Oops{
         empwage.addCompany("QualityKiosk", 250, 24, 300);
         empwage.addCompany("Bridgelabz", 300, 25, 270);
         empwage.computeEmpWage();
+        System.out.println("Total Wage for QualityKiosk company : "+empwage.getEmpWageCompany("QualityKiosk"));
         // empwage.calculateEmployeeWage(null);
         
     }
